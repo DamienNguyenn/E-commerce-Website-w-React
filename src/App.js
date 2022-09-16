@@ -11,6 +11,14 @@ import Cart from "./pages/Cart";
 function App() {
   const [cart, setCart] = useState([]);
 
+  function addToCart(book) {
+    setCart([...cart, book]);
+  }
+
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
+
   // function addToCart(book) {
   //   const dupeItem = cart.find((item) => +item.id === +book.id);
   //   if (dupeItem) {
@@ -44,7 +52,7 @@ function App() {
           <Route path="/books" element={<Books books={books} />} />
           <Route
             path="/books/:id"
-            element={<BookInfo books={books} addToCart={addToCart} />}
+            element={<BookInfo books={books} addToCart={addToCart} cart={cart} />}
           />
           <Route path="/cart" element={<Cart books={books} />} />
         </Routes>
